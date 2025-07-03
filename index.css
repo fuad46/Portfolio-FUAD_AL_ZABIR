@@ -336,7 +336,10 @@
             position: relative;
             overflow: hidden;
         }
-
+        .project-image>span{
+          font-size: 4rem;
+          font-weight: 700;
+        }
         .project-image::before {
             content: '';
             position: absolute;
