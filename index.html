@@ -12,10 +12,17 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e2e2e2 0%, #ebebeb 100%);
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
             overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme {
+            background: #f8fafc;
+            color: #1a202c;
         }
 
         .container {
@@ -24,237 +31,604 @@
             padding: 20px;
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .light-theme .theme-toggle {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .light-theme .theme-toggle:hover {
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
         /* Header Section */
         .header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 40px;
             padding: 60px 0;
-            background: rgba(255, 255, 255);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(30, 30, 30, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
             margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            color: #3a8bfe;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .header {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+            margin-left: 40px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: #0a0a0a;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .profile-image::before {
+            background: #f8fafc;
+        }
+
+        .profile-image img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-placeholder {
+            font-size: 4rem;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-content {
+            flex: 1;
+            z-index: 2;
         }
 
         .header h1 {
             font-size: 3.5rem;
-            color: white;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.02em;
         }
 
         .header .title {
             font-size: 1.5rem;
-            color: #f0f0f0;
-            margin-bottom: 20px;
-            font-weight: 300;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .header .title {
+            color: #64748b;
         }
 
         .contact-info {
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 20px;
         }
 
         .contact-item {
-            color: white;
+            color: #e0e0e0;
             text-decoration: none;
-            padding: 10px 20px;
-            background: rgb(41, 41, 41);
-            border-radius: 25px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+        }
+
+        .light-theme .contact-item {
+            color: #1a202c;
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
         }
 
         .contact-item:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(139, 92, 246, 0.2);
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
         }
 
         /* Section Styling */
         .section {
-            background: white;
+            background: rgba(18, 18, 18, 0.9);
             margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .light-theme .section {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .section:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
 
         .section-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
             color: white;
-            padding: 20px 30px;
-            font-size: 1.5rem;
+            padding: 24px 32px;
+            font-size: 1.4rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .section-content {
-            padding: 30px;
+            padding: 32px;
         }
 
         /* Skills Section */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
         }
 
         .skill-category {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 10px;
-            color: white;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .skill-category {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category:hover {
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-4px);
         }
 
         .skill-category h4 {
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             font-size: 1.2rem;
+            color: #8b5cf6;
         }
 
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 8px;
         }
 
         .skill-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
-        /* Project Section */
-        .project-card {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 5px solid #4facfe;
+        .light-theme .skill-tag {
+            background: rgba(0, 0, 0, 0.1);
+            color: #1a202c;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-tag:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Projects Carousel */
+        .projects-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .project-slide {
+            min-width: 100%;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .project-slide {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: slideShimmer 2s infinite;
+        }
+
+        @keyframes slideShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .project-content {
+            padding: 24px;
         }
 
         .project-title {
             font-size: 1.4rem;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
+            color: #8b5cf6;
+            margin-bottom: 12px;
         }
 
         .project-description {
-            color: #666;
+            color: #a0a0a0;
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .project-description {
+            color: #64748b;
         }
 
         .project-link {
             display: inline-block;
-            background: #4facfe;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 12px 24px;
+            border-radius: 25px;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .project-link:hover {
-            background: #3a8bfe;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
         }
 
-        /* Education Section */
-        .education-item {
-            border-left: 3px solid #4facfe;
-            padding-left: 20px;
-            margin-bottom: 20px;
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-nav:hover {
+            background: rgba(139, 92, 246, 0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: 16px;
+        }
+
+        .carousel-nav.next {
+            right: 16px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #8b5cf6;
+            transform: scale(1.2);
+        }
+
+        /* Education Timeline */
+        .education-timeline {
             position: relative;
+            padding-left: 30px;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+        }
+
+        .education-item {
+            position: relative;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .education-item {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .education-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateX(8px);
         }
 
         .education-item::before {
             content: '';
             position: absolute;
-            left: -6px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background: #4facfe;
+            left: -42px;
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            background: #8b5cf6;
             border-radius: 50%;
+            border: 3px solid #0a0a0a;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .education-item::before {
+            border: 3px solid #f8fafc;
         }
 
         .education-degree {
             font-weight: 600;
             font-size: 1.1rem;
-            color: #333;
+            color: #8b5cf6;
+            margin-bottom: 8px;
         }
 
         .education-school {
-            color: #666;
-            margin: 5px 0;
+            color: #e0e0e0;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .education-school {
+            color: #1a202c;
         }
 
         .education-year {
-            color: #999;
+            color: #a0a0a0;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
-        /* Certificates Section */
+        .light-theme .education-year {
+            color: #64748b;
+        }
+
+        /* Certificates Grid */
         .certificates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
         .certificate-card {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-theme .certificate-card {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
         }
 
         .certificate-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-4px);
+            background: rgba(139, 92, 246, 0.1);
         }
 
         .certificate-title {
             font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
+            margin-bottom: 8px;
+            color: #8b5cf6;
+            font-size: 1.1rem;
         }
 
         .certificate-org {
-            color: #666;
+            color: #a0a0a0;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .certificate-org {
+            color: #64748b;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
+            }
+
+            .profile-image {
+                margin-left: 0;
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-image img {
+                width: 140px;
+                height: 140px;
+            }
+
             .header h1 {
                 font-size: 2.5rem;
             }
-            
+
             .contact-info {
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
             }
-            
+
             .skills-container {
                 grid-template-columns: 1fr;
             }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-timeline {
+                padding-left: 20px;
+            }
+
+            .education-item {
+                margin-left: 10px;
+            }
         }
 
-        /* Animation */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -262,35 +636,85 @@
             }
         }
 
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .section {
             animation: fadeInUp 0.6s ease forwards;
         }
 
-        .section:nth-child(2) { animation-delay: 0.1s; }
-        .section:nth-child(3) { animation-delay: 0.2s; }
-        .section:nth-child(4) { animation-delay: 0.3s; }
-        .section:nth-child(5) { animation-delay: 0.4s; }
-        .h1, .title{
-  color: #333;
-}
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        .header {
+            animation: slideInFromLeft 0.8s ease forwards;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #7c3aed, #0891b2);
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+            🌙
+        </button>
         <!-- Header Section -->
         <div class="header">
-            <h1 style="color: #152133;">FUAD AL ZABIR</h1>
-            <div class="title" style="color: #152133;">SOFTWARE ENGINEER</div>
-            <div class="contact-info">
-                <a href="tel:01759513787" class="contact-item">📱 01759513787</a>
-                <a href="mailto:fuadalzabir5@gmail.com" class="contact-item">✉️ fuadalzabir5@gmail.com</a>
-                <span class="contact-item">📍 Dhaka, Bangladesh</span>
+            <div class="profile-image">
+                <!-- Replace with your actual image -->
+                <div class="profile-placeholder">👨‍💻</div>
+                <!-- <img src="your-image.jpg" alt="Fuad Al Zabir"> -->
+            </div>
+            <div class="header-content">
+                <h1>FUAD AL ZABIR</h1>
+                <div class="title">SOFTWARE ENGINEER</div>
+                <div class="contact-info">
+                    <a href="tel:01759513787" class="contact-item">📱 01759513787</a>
+                    <a href="mailto:fuadalzabir5@gmail.com" class="contact-item">✉️ fuadalzabir5@gmail.com</a>
+                    <span class="contact-item">📍 Dhaka, Bangladesh</span>
+                </div>
             </div>
         </div>
 
         <!-- Skills Section -->
         <div class="section">
-            <div class="section-header">💻 Technical Skills</div>
+            <div class="section-header">
+                <span>💻</span> Technical Skills
+            </div>
             <div class="section-content">
                 <div class="skills-container">
                     <div class="skill-category">
@@ -299,6 +723,7 @@
                             <span class="skill-tag">React JS</span>
                             <span class="skill-tag">HTML/CSS</span>
                             <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -307,6 +732,7 @@
                             <span class="skill-tag">Django</span>
                             <span class="skill-tag">Flask</span>
                             <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Node.js</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -324,6 +750,7 @@
                             <span class="skill-tag">LLM</span>
                             <span class="skill-tag">Git</span>
                             <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">Docker</span>
                         </div>
                     </div>
                 </div>
@@ -332,41 +759,90 @@
 
         <!-- Projects Section -->
         <div class="section">
-            <div class="section-header">🚀 Featured Project</div>
+            <div class="section-header">
+                <span>🚀</span> Featured Projects
+            </div>
             <div class="section-content">
-                <div class="project-card">
-                    <div class="project-title">Pithaghor Shop - E-commerce Platform</div>
-                    <div class="project-description">
-                        A comprehensive single vendor e-commerce system featuring PayPal payment integration, 
-                        automated inventory management, and email verification system. Built for a local shop 
-                        to streamline their online business operations.
+                <div class="projects-carousel">
+                    <div class="carousel-container" id="carouselContainer">
+                        <div class="project-slide">
+                            <div class="project-image">
+                                <span>🛒 E-commerce Platform</span>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-title">Pithaghor Shop</div>
+                                <div class="project-description">
+                                    A comprehensive single vendor e-commerce system featuring PayPal payment integration, 
+                                    automated inventory management, and email verification system. Built for a local shop 
+                                    to streamline their online business operations.
+                                </div>
+                                <a href="https://drive.google.com/file/d/1Q-lftypgjDqYeA9_zicYUzszfwfcoYvz/view?usp=sharing" class="project-link" target="_blank">
+                                    View Project Details
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-slide">
+                            <div class="project-image">
+                                <span>🎨 UI/UX Design</span>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-title">Shop Mix - Multivendor App</div>
+                                <div class="project-description">
+                                    Modern multivendor e-commerce mobile app design with intuitive user interface, 
+                                    seamless shopping experience, and comprehensive vendor management system. 
+                                    Features include advanced search, wishlist, and payment integration.
+                                </div>
+                                <a href="https://www.behance.net/gallery/222865449/SHOP-MIX-MULTIVENDOR-E-COMMERCE-APP" class="project-link" target="_blank">
+                                    View Design Portfolio
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-slide">
+                            <div class="project-image">
+                                <span>🤖 AI Project</span>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-title">LLM Integration System</div>
+                                <div class="project-description">
+                                    Advanced AI-powered application leveraging Large Language Models for automated 
+                                    content generation, natural language processing, and intelligent user interactions. 
+                                    Built with modern frameworks and optimized for performance.
+                                </div>
+                                <a href="#" class="project-link">
+                                    Coming Soon
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <a href="https://drive.google.com/file/d/1Q-lftypgjDqYeA9_zicYUzszfwfcoYvz/view?usp=sharing" class="project-link" target="_blank">
-                        View Project Details
-                    </a>
+                    <button class="carousel-nav prev" onclick="prevSlide()">❮</button>
+                    <button class="carousel-nav next" onclick="nextSlide()">❯</button>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="currentSlide(0)"></span>
+                    <span class="indicator" onclick="currentSlide(1)"></span>
+                    <span class="indicator" onclick="currentSlide(2)"></span>
                 </div>
             </div>
         </div>
 
         <!-- Experience Section -->
         <div class="section">
-            <div class="section-header">💼 Professional Experience</div>
+            <div class="section-header">
+                <span>💼</span> Professional Experience
+            </div>
             <div class="section-content">
-                <div class="project-card">
-                    <div class="project-title">UI/UX Designer</div>
-                    <div class="project-description">
-                        Creating user-centered designs and intuitive interfaces. Check out my design portfolio 
-                        on Behance showcasing various UI/UX projects and design solutions.
+                <div class="certificates-grid">
+                    <div class="certificate-card">
+                        <div class="certificate-title">UI/UX Designer</div>
+                        <div class="certificate-org">Creating user-centered designs and intuitive interfaces. Specialized in mobile app design, web interfaces, and user experience optimization.</div>
                     </div>
-                    <a href="https://www.behance.net/gallery/222865449/SHOP-MIX-MULTIVENDOR-E-COMMERCE-APP" class="project-link" target="_blank">
-                        View Design Portfolio
-                    </a>
-                </div>
-                <div class="project-card">
-                    <div class="project-title">Digital Marketer</div>
-                    <div class="project-description">
-                        Developing and implementing digital marketing strategies, SEO optimization, 
-                        and online brand promotion to drive business growth and engagement.
+                    <div class="certificate-card">
+                        <div class="certificate-title">Full Stack Developer</div>
+                        <div class="certificate-org">Developing end-to-end web applications using modern frameworks. Expertise in React, Django, and database management.</div>
+                    </div>
+                    <div class="certificate-card">
+                        <div class="certificate-title">Digital Marketer</div>
+                        <div class="certificate-org">Implementing digital marketing strategies, SEO optimization, and online brand promotion to drive business growth.</div>
                     </div>
                 </div>
             </div>
@@ -374,29 +850,35 @@
 
         <!-- Education Section -->
         <div class="section">
-            <div class="section-header">🎓 Education</div>
+            <div class="section-header">
+                <span>🎓</span> Education
+            </div>
             <div class="section-content">
-                <div class="education-item">
-                    <div class="education-degree">Bachelor's of Science in Computer Science Engineering</div>
-                    <div class="education-school">Northern University Bangladesh</div>
-                    <div class="education-year">2020-2024</div>
-                </div>
-                <div class="education-item">
-                    <div class="education-degree">Higher Secondary Certificate (HSC)</div>
-                    <div class="education-school">Scholars School & College</div>
-                    <div class="education-year">2016-2018</div>
-                </div>
-                <div class="education-item">
-                    <div class="education-degree">Secondary School Certificate (SSC)</div>
-                    <div class="education-school">Dhaka Residential Model College</div>
-                    <div class="education-year">2008-2016</div>
+                <div class="education-timeline">
+                    <div class="education-item">
+                        <div class="education-degree">Bachelor's of Science in Computer Science Engineering</div>
+                        <div class="education-school">Northern University Bangladesh</div>
+                        <div class="education-year">2020-2024</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-degree">Higher Secondary Certificate (HSC)</div>
+                        <div class="education-school">Scholars School & College</div>
+                        <div class="education-year">2016-2018</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-degree">Secondary School Certificate (SSC)</div>
+                        <div class="education-school">Dhaka Residential Model College</div>
+                        <div class="education-year">2008-2016</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Certificates Section -->
         <div class="section">
-            <div class="section-header">🏆 Certifications</div>
+            <div class="section-header">
+                <span>🏆</span> Certifications
+            </div>
             <div class="section-content">
                 <div class="certificates-grid">
                     <div class="certificate-card">
@@ -417,30 +899,163 @@
     </div>
 
     <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.project-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const carouselContainer = document.getElementById('carouselContainer');
+        const totalSlides = slides.length;
+
+        // Theme Toggle Function
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                themeToggle.textContent = '🌞';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'light') {
+                body.classList.add('light-theme');
+                themeToggle.textContent = '🌞';
+            } else {
+                themeToggle.textContent = '🌙';
+            }
+        }
+
+        function showSlide(index) {
+            const offset = -index * 100;
+            carouselContainer.style.transform = `translateX(${offset}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            showSlide(index);
+        }
+
+        // Auto-play carousel
+        setInterval(nextSlide, 5000);
+
         // Add smooth scrolling and interactive effects
         document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.addEventListener('mouseenter', function() {
-                    this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.15)';
+            // Load theme on page load
+            loadTheme();
+            // Add intersection observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            // Observe all sections
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add hover effects to skill tags
+            document.querySelectorAll('.skill-tag').forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) rotate(2deg)';
                 });
                 
-                section.addEventListener('mouseleave', function() {
-                    this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                tag.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
                 });
             });
 
             // Add click animation to project links
-            const projectLinks = document.querySelectorAll('.project-link');
-            projectLinks.forEach(link => {
+            document.querySelectorAll('.project-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     this.style.transform = 'scale(0.95)';
                     setTimeout(() => {
-                        this.style.transform = 'scale(1.05)';
+                        this.style.transform = 'scale(1)';
                     }, 150);
                 });
             });
+
+            // Add parallax effect to header
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const header = document.querySelector('.header');
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            });
+
+            // Add typing animation to title
+            const title = document.querySelector('.header .title');
+            const text = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Add touch support for mobile carousel
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        carouselContainer.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        carouselContainer.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        });
+
+        carouselContainer.addEventListener('touchend', function() {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const deltaX = startX - currentX;
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
         });
     </script>
 </body>
