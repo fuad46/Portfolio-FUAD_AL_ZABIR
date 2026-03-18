@@ -821,41 +821,8 @@
 </footer>
 
 <script>
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.innerHTML = '<i class="fa fa-check"></i> Message Sent!';
-    btn.style.background = '#22c55e';
-    setTimeout(() => {
-      btn.innerHTML = '<i class="fa fa-paper-plane"></i> Send Message';
-      btn.style.background = '';
-      e.target.reset();
-    }, 3000);
-  }
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.exp-card, .edu-card, .cert-card, .service-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.2s, box-shadow 0.2s';
-    observer.observe(el);
-  });
-</script>
-<script>
   // ── Rate Limiting ──
-  const RATE_LIMIT = { max: 3, window: 60 * 60 * 1000 }; // 3 per hour
+  const RATE_LIMIT = { max: 3, window: 60 * 60 * 1000 };
 
   function getRateLimitData() {
     const data = JSON.parse(localStorage.getItem('contact_rl') || '{"count":0,"reset":0}');
@@ -902,10 +869,8 @@
       });
 
       if (response.ok) {
-        // Save rate limit only on success
         rl.count++;
         localStorage.setItem('contact_rl', JSON.stringify(rl));
-
         btn.innerHTML = '<i class="fa fa-check"></i> Message Sent!';
         btn.style.background = '#22c55e';
         e.target.reset();
@@ -924,6 +889,11 @@
     }
   }
 
+  // ── Mobile Menu ──
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
   // ── Scroll Reveal ──
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -940,11 +910,7 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.2s, box-shadow 0.2s';
     observer.observe(el);
   });
-
-  // ── Mobile Menu ──
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
 </script>
+
 </body>
 </html>
